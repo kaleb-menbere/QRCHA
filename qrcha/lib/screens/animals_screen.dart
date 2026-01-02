@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/cards.dart';
-import 'animal_detail_screen.dart';
+import 'detail_screen.dart';
 
 class AnimalsScreen extends StatelessWidget {
   const AnimalsScreen({Key? key}) : super(key: key);
@@ -40,7 +40,7 @@ class AnimalsScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => AnimalDetailScreen(
+                  builder: (_) => DetailScreen(
                     name: animal['name']!,
                     price: animal['price']!,
                     imagePath: animal['image']!,
