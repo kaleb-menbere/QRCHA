@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
 
-class AnimalDetailScreen extends StatefulWidget {
+class AnimalDetailScreen extends StatelessWidget {
   final String name;
   final String price;
   final String imagePath;
-  final String description;
+  final String? description;
 
   const AnimalDetailScreen({
     Key? key,
     required this.name,
     required this.price,
     required this.imagePath,
-    required this.description,
+    this.description,
   }) : super(key: key);
-
-  @override
-  State<AnimalDetailScreen> createState() => _AnimalDetailScreenState();
-}
-
-class _AnimalDetailScreenState extends State<AnimalDetailScreen> {
-  int quantity = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -27,107 +20,96 @@ class _AnimalDetailScreenState extends State<AnimalDetailScreen> {
       backgroundColor: Colors.red.shade50,
       appBar: AppBar(
         backgroundColor: Colors.red.shade700,
-        title: Text(widget.name),
+        title: Text(name),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // Animal Image
-          Container(
-            height: 250,
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.vertical(bottom: Radius.circular(20)),
-              image: DecorationImage(
-                image: AssetImage(widget.imagePath),
-                fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Hero animation for image
+            Hero(
+              tag: imagePath,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.vertical(
+                  bottom: Radius.circular(20),
+                ),
+                child: Image.asset(
+                  imagePath,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: 250,
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 16),
-          // Name & Price
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              widget.name,
-              style: const TextStyle(
-                  fontSize: 24, fontWeight: FontWeight.bold, color: Colors.red),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-            child: Text(
-              widget.price,
-              style: const TextStyle(
-                  fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black54),
-            ),
-          ),
-          const SizedBox(height: 16),
-          // Description
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              widget.description,
-              style: const TextStyle(fontSize: 16),
-            ),
-          ),
-          const SizedBox(height: 16),
-          // Quantity selector
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              children: [
-                const Text(
-                  'Quantity:',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(width: 12),
-                IconButton(
-                  onPressed: () {
-                    if (quantity > 1) {
-                      setState(() {
-                        quantity--;
-                      });
-                    }
-                  },
-                  icon: const Icon(Icons.remove_circle_outline, color: Colors.red),
-                ),
-                Text(
-                  '$quantity',
-                  style: const TextStyle(fontSize: 16),
-                ),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      quantity++;
-                    });
-                  },
-                  icon: const Icon(Icons.add_circle_outline, color: Colors.red),
-                ),
-              ],
-            ),
-          ),
-          const Spacer(),
-          // Add to cart button
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                print(
-                    '${widget.name} added to cart. Quantity: $quantity');
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red.shade700,
-                minimumSize: const Size(double.infinity, 50),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
-              ),
-              child: const Text(
-                'Add to Cart',
-                style: TextStyle(fontSize: 18, color: Colors.white),
+            const SizedBox(height: 16),
+
+            // Name & Price
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    style: const TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    price,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.red.shade700,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+
+                  // Description
+                  Text(
+                    description ??
+                        "This is a high-quality $name perfect for your needs. Buy with confidence!",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black87,
+                      height: 1.4,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+
+                  // Buy Button
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // TODO: implement buy logic
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('You selected $name for $price!'),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red.shade700,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: const Text(
+                        "Buy Now",
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

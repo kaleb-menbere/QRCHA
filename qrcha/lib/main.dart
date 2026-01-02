@@ -12,7 +12,7 @@ class MeatMarketApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Meat Market App',
+      title: 'QRCHA',
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),

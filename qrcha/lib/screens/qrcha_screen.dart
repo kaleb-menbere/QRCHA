@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/cards.dart';
+import 'animal_detail_screen.dart';
 
 class QrchaScreen extends StatelessWidget {
   const QrchaScreen({Key? key}) : super(key: key);
@@ -30,7 +31,7 @@ class QrchaScreen extends StatelessWidget {
             crossAxisCount: 3, // 3 cards per row
             crossAxisSpacing: 8,
             mainAxisSpacing: 8,
-            childAspectRatio: 0.7, // taller cards
+            childAspectRatio: 0.7,
           ),
           itemBuilder: (context, index) {
             final animal = animals[index];
@@ -38,8 +39,17 @@ class QrchaScreen extends StatelessWidget {
               name: animal['name']!,
               price: animal['price']!,
               imagePath: animal['image']!,
-              onAdd: () {
-                print('${animal['name']} added to cart!');
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => AnimalDetailScreen(
+                      name: animal['name']!,
+                      price: animal['price']!,
+                      imagePath: animal['image']!,
+                    ),
+                  ),
+                );
               },
             );
           },

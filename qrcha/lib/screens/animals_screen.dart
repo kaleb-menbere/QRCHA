@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/cards.dart';
+import 'animal_detail_screen.dart';
 
 class AnimalsScreen extends StatelessWidget {
   const AnimalsScreen({Key? key}) : super(key: key);
@@ -12,8 +13,6 @@ class AnimalsScreen extends StatelessWidget {
       {'name': 'Hen', 'price': '120 ETB', 'image': 'assets/hen.png'},
       {'name': 'Pig', 'price': '400 ETB', 'image': 'assets/pig.png'},
       {'name': 'Sheep', 'price': '300 ETB', 'image': 'assets/sheep.png'},
-      {'name': 'Bull 2', 'price': '520 ETB', 'image': 'assets/bull2.png'},
-      {'name': 'Goat 2', 'price': '360 ETB', 'image': 'assets/goat2.png'},
     ];
 
     return Scaffold(
@@ -22,28 +21,35 @@ class AnimalsScreen extends StatelessWidget {
         backgroundColor: Colors.red.shade700,
         title: const Text('Animals for Sale'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: GridView.builder(
-          itemCount: animals.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, // 3 cards per row
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
-            childAspectRatio: 0.7, // taller cards
-          ),
-          itemBuilder: (context, index) {
-            final animal = animals[index];
-            return Cards(
-              name: animal['name']!,
-              price: animal['price']!,
-              imagePath: animal['image']!,
-              onAdd: () {
-                print('${animal['name']} added to cart!');
-              },
-            );
-          },
+      body: GridView.builder(
+        padding: const EdgeInsets.all(8),
+        itemCount: animals.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          crossAxisSpacing: 8,
+          mainAxisSpacing: 8,
+          childAspectRatio: 0.7,
         ),
+        itemBuilder: (context, index) {
+          final animal = animals[index];
+          return Cards(
+            name: animal['name']!,
+            price: animal['price']!,
+            imagePath: animal['image']!,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => AnimalDetailScreen(
+                    name: animal['name']!,
+                    price: animal['price']!,
+                    imagePath: animal['image']!,
+                  ),
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }
