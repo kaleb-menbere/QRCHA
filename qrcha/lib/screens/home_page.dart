@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
       // Red AppBar with subtle shadow
       appBar: AppBar(
         title: const Text(
-          'Meat Market',
+          'QRCHA',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             letterSpacing: 1,
@@ -59,9 +59,9 @@ class _HomePageState extends State<HomePage> {
         child: BottomNavigationBar(
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
-          selectedItemColor: Colors.red.shade700,
-          unselectedItemColor: Colors.grey.shade500,
-          backgroundColor: Colors.white,
+          selectedItemColor: const Color.fromARGB(255, 0, 0, 0),
+          unselectedItemColor: const Color.fromARGB(255, 255, 255, 255),
+          backgroundColor: const Color.fromARGB(255, 255, 0, 0),
           showUnselectedLabels: true,
           selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
           type: BottomNavigationBarType.fixed,
