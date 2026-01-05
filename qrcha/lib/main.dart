@@ -15,8 +15,11 @@ class MeatMarketApp extends StatelessWidget {
       title: 'QRCHA',
       theme: ThemeData(
         primarySwatch: Colors.red,
+        // SUGGESTED ADDITIONS:
+        useMaterial3: true, // Enable Material 3 design
+        scaffoldBackgroundColor: Colors.grey[50], // Lighter background
       ),
-      home: const HomePage(), // <-- your real home page
+      home: const HomePage(),
     );
   }
 }

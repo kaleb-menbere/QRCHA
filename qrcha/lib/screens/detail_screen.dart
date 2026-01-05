@@ -4,107 +4,99 @@ class DetailScreen extends StatelessWidget {
   final String name;
   final String price;
   final String imagePath;
-  final String? description;
 
   const DetailScreen({
     Key? key,
     required this.name,
     required this.price,
     required this.imagePath,
-    this.description,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red.shade50,
       appBar: AppBar(
         backgroundColor: Colors.red.shade700,
         title: Text(name),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Hero animation for image
-            Hero(
-              tag: imagePath,
-              child: ClipRRect(
-                borderRadius: const BorderRadius.vertical(
-                  bottom: Radius.circular(20),
-                ),
-                child: Image.asset(
-                  imagePath,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: 250,
-                ),
+            // Image
+            Container(
+              height: 250,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade100,
+              ),
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.cover,
               ),
             ),
-            const SizedBox(height: 16),
 
-            // Name & Price
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     name,
                     style: const TextStyle(
-                      fontSize: 26,
+                      fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black87,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 10),
                   Text(
                     price,
                     style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                       color: Colors.red.shade700,
                     ),
                   ),
-                  const SizedBox(height: 16),
-
-                  // Description
-                  Text(
-                    description ??
-                        "This is a high-quality $name perfect for your needs. Buy with confidence!",
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.black87,
-                      height: 1.4,
+                  const SizedBox(height: 20),
+                  
+                  const Text(
+                    'Description',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 24),
-
-                  // Buy Button
+                  const SizedBox(height: 10),
+                  const Text(
+                    'Healthy farm animal raised with proper care and nutrition. Suitable for farming and agricultural purposes.',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                      height: 1.5,
+                    ),
+                  ),
+                  
+                  const SizedBox(height: 30),
                   SizedBox(
                     width: double.infinity,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: () {
-                        // TODO: implement buy logic
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('You selected $name for $price!'),
-                          ),
-                        );
-                      },
+                      onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red.shade700,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
                       child: const Text(
-                        "Buy Now",
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        'Buy Now',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 24),
                 ],
               ),
             ),

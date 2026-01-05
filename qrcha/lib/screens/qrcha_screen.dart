@@ -7,46 +7,45 @@ class QrchaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final animals = [
+    final qrhcaItems = [
       {'name': 'Bull', 'price': '500 ETB', 'image': 'assets/bull.png'},
       {'name': 'Goat', 'price': '350 ETB', 'image': 'assets/goat.png'},
       {'name': 'Hen', 'price': '120 ETB', 'image': 'assets/hen.png'},
-      {'name': 'Pig', 'price': '400 ETB', 'image': 'assets/pig.png'},
       {'name': 'Sheep', 'price': '300 ETB', 'image': 'assets/sheep.png'},
       {'name': 'Bull 2', 'price': '520 ETB', 'image': 'assets/bull2.png'},
       {'name': 'Goat 2', 'price': '360 ETB', 'image': 'assets/goat2.png'},
     ];
 
     return Scaffold(
-      backgroundColor: Colors.red.shade50,
       appBar: AppBar(
-        backgroundColor: Colors.red.shade700,
         title: const Text('Qrcha for Sale'),
+        backgroundColor: Colors.red.shade700,
       ),
+      backgroundColor: Colors.grey.shade100,
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GridView.builder(
-          itemCount: animals.length,
+          itemCount: qrhcaItems.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, // 3 cards per row
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
-            childAspectRatio: 0.7,
+            crossAxisCount: 2,
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12,
+            childAspectRatio: 0.75,
           ),
           itemBuilder: (context, index) {
-            final animal = animals[index];
+            final item = qrhcaItems[index];
             return Cards(
-              name: animal['name']!,
-              price: animal['price']!,
-              imagePath: animal['image']!,
+              name: item['name']!,
+              price: item['price']!,
+              imagePath: item['image']!,
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (_) => DetailScreen(
-                      name: animal['name']!,
-                      price: animal['price']!,
-                      imagePath: animal['image']!,
+                      name: item['name']!,
+                      price: item['price']!,
+                      imagePath: item['image']!,
                     ),
                   ),
                 );
