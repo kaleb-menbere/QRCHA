@@ -7,10 +7,18 @@ class AccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
-      appBar: AppBar(
-        title: const Text('Account'),
+      appBar: AppBar(  
         backgroundColor: Colors.red.shade700,
-        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          'Account',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
+            letterSpacing: 1.1,
+          ),
+        ),
+        elevation: 2,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),

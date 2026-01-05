@@ -6,8 +6,15 @@ plugins {
 
 android {
     namespace = "com.example.qrcha"
-    compileSdk = 34
-    ndkVersion = "25.1.8937393"
+    compileSdk = 36   // ✅ REQUIRED FIX
+
+    defaultConfig {
+        applicationId = "com.example.qrcha"
+        minSdk = flutter.minSdkVersion
+        targetSdk = 36   // ✅ SAFE to match compileSdk
+        versionCode = 1
+        versionName = "1.0.0"
+    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -15,25 +22,17 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
-    }
-
-    defaultConfig {
-        applicationId = "com.example.qrcha"
-        minSdk = 21
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.0"
+        jvmTarget = "17"
     }
 
     buildTypes {
         debug {
-            signingConfig = signingConfigs.getByName("debug")
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
         release {
-            // This uses debug signing for now - works without Java/keystore
-            signingConfig = signingConfigs.getByName("debug")
-            isMinifyEnabled = false  // Disable minify to avoid issues
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
 }

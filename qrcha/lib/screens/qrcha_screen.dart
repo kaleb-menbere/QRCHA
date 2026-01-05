@@ -17,10 +17,20 @@ class QrchaScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Qrcha for Sale'),
+      appBar: AppBar(  
         backgroundColor: Colors.red.shade700,
+        centerTitle: true,
+        title: const Text(
+          'Qrcha for Sale',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
+            letterSpacing: 1.1,
+          ),
+        ),
+        elevation: 2,
       ),
+
       backgroundColor: Colors.grey.shade100,
       body: Padding(
         padding: const EdgeInsets.all(8.0),

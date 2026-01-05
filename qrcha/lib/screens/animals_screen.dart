@@ -32,9 +32,19 @@ class AnimalsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Animals for Sale'),
         backgroundColor: Colors.red.shade700,
+        centerTitle: true,
+        title: const Text(
+          'Animals for Sale',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
+            letterSpacing: 1.1,
+          ),
+        ),
+        elevation: 2,
       ),
+
       backgroundColor: Colors.grey.shade100,
       body: Padding(
         padding: const EdgeInsets.all(8.0),
